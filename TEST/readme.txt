@@ -3,6 +3,10 @@ iOS 12.4
 
 Need pod install
 
+• avatar_url
+• login
+• site_admin (badge)
+
 在ViewController用ViewModel.getUsers(completionBlock:@escaping()->())
 用URLSession拿到json透過Codable拿到[User]存到ViewModel
 completionBlock 通知ViewController 重整 tableView
