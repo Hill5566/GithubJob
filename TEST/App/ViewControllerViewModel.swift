@@ -16,6 +16,7 @@ class ViewControllerViewModel {
     public func toDetailVC(user:User, fromVC:UIViewController) {
         let vc = DetailVC.fromStoryBoard()
         vc.modalPresentationStyle = .fullScreen
+        vc.viewModel.user = user
         fromVC.present(vc, animated: true, completion: nil)
     }
 }

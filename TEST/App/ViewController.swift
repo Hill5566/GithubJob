@@ -30,14 +30,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let user = viewModel.users[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: user.site_admin ? "AdminCell":"Cell") as! UserTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: user.site_admin ?? false ? "AdminCell":"Cell") as! UserTableViewCell
         cell.set(user: user)
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = viewModel.users[indexPath.row]
-
+        viewModel.toDetailVC(user: user, fromVC: self)
     }
 }
 
@@ -51,13 +51,13 @@ class UserTableViewCell: UITableViewCell {
     }
     
     func set(user:User) {
-        self.avatar?.setImageAsyncFrom(urlString: user.avatar_url)
+        self.avatar?.setImageAsyncFrom(urlString: user.avatar_url ?? "")
         self.name.text = user.login
     }
 }
 
 struct User: Codable {
-    let login: String
-    let avatar_url: String
-    let site_admin: Bool
+    let login: String?
+    let avatar_url: String?
+    let site_admin: Bool?
 }
